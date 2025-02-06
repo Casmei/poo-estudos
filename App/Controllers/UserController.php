@@ -4,15 +4,15 @@ namespace App\Controllers;
 
 use Flight;
 use App\Repositories\UserRepository;
-use App\Services\userService;
+use App\Services\UserService;
 
 class UserController
 {
-    private userService $userService;
+    private UserService $userService;
 
     public function __construct()
     {
-        $this->userService = new userService(new UserRepository());
+        $this->userService = new UserService(new UserRepository());
     }
 
     public function index()
