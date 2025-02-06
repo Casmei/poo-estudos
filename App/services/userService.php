@@ -1,10 +1,10 @@
 <?php
 
-namespace App\UseCases\User;
+namespace App\Services;
 
 use App\Repositories\UserRepository;
 
-class CreateUser
+class userService
 {
     private UserRepository $repository;
 
@@ -13,7 +13,7 @@ class CreateUser
         $this->repository = $repository;
     }
 
-    public function execute(string $name, string $email)
+    public function create(string $name, string $email)
     {
         return $this->repository->create($name, $email);
     }

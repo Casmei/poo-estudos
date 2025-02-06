@@ -3,16 +3,16 @@
 namespace App\Controllers;
 
 use Flight;
-use App\UseCases\User\CreateUser;
 use App\Repositories\UserRepository;
+use App\Services\userService;
 
 class UserController
 {
-    private CreateUser $createUser;
+    private userService $userService;
 
     public function __construct()
     {
-        $this->createUser = new CreateUser(new UserRepository());
+        $this->userService = new userService(new UserRepository());
     }
 
     public function index()
@@ -24,7 +24,7 @@ class UserController
     public function store()
     {
         $data = Flight::request()->data;
-        $user = $this->createUser->execute($data->name, $data->email);
+        $user = $this->userService->create($data->name, $data->email);
 
         if ($user) {
             Flight::json($user, 201);
